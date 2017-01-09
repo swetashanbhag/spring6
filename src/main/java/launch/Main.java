@@ -11,7 +11,7 @@ import org.apache.catalina.webresources.StandardRoot;
 public class Main {
 	 public static void main(String[] args) throws Exception {
 
-	        String webappDirLocation = "src/main/webapp/";
+	        String webappDirLocation = "target/embeddedTomcatSample/";
 	        Tomcat tomcat = new Tomcat();
 
 	        //The port that we should run on can be set into an environment variable
