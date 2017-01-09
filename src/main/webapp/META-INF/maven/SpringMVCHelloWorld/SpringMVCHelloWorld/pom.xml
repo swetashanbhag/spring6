@@ -3,7 +3,6 @@
   <groupId>SpringMVCHelloWorld</groupId>
   <artifactId>SpringMVCHelloWorld</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
   <url>http://maven.apache.org</url>
    <properties>
     <tomcat.version>8.0.28</tomcat.version>
@@ -12,7 +11,13 @@
    <finalName>embeddedTomcatSample</finalName>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
+    
+     
       <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
+      </plugin>
+       <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>appassembler-maven-plugin</artifactId>
             <version>1.1.1</version>
@@ -35,14 +40,6 @@
             </executions>
         </plugin>
       <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-      <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
@@ -50,15 +47,24 @@
           <target>1.8</target>
         </configuration>
       </plugin>
-	   <plugin>
+	 <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.4</version>
+            <version>2.3</version>
             <executions>
                 <execution>
-                    <id>copy-dependencies</id>
                     <phase>package</phase>
-                    <goals><goal>copy-dependencies</goal></goals>
+                    <goals><goal>copy</goal></goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.github.jsimone</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>8.0.30.2</version>
+                                <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
                 </execution>
             </executions>
         </plugin>
@@ -140,4 +146,5 @@
 </dependency>
   	
   </dependencies>
+  <packaging>war</packaging>
 </project>
